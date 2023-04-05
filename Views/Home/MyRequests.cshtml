@@ -1,0 +1,34 @@
+﻿@model TestTaskDotnet.Models.UserModels.User
+<h2>Обработка заявки</h2>
+<form method="post" asp-controller="Request" asp-action="AddRequestToUser">
+    <div asp-validation-summary="ModelOnly"></div>
+    <div>
+        <label>ID</label><br />
+        <input asp-for="Id" />
+        <span asp-validation-for="Id"></span>
+    </div>
+    <div>
+        <label>Имя пользователя</label><br />
+        <input asp-for="Name" />
+        <span asp-validation-for="Name"></span>
+    </div>
+    <div>
+        <input type="submit" value="Присвоить заявку пользователю" />
+    </div>
+</form>
+<form method="post" asp-controller="Request" asp-action="RemoveRequestFromUser">
+    <div asp-validation-summary="ModelOnly"></div>
+    <div>
+        <label>ID</label><br />
+        <input asp-for="Id" />
+        <span asp-validation-for="Id"></span>
+    </div>
+    <div>
+        <label>Имя пользователя</label><br />
+        <input asp-for="Name" />
+        <span asp-validation-for="Name"></span>
+    </div>
+    <div>
+        <input type="submit" value="Убрать заявку у пользователя" />
+    </div>
+</form>

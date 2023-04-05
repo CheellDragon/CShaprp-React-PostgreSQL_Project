@@ -1,0 +1,69 @@
+﻿@model TestTaskDotnet.Models.RequestModels.Request
+<h2>Обработка заявки</h2>
+<form method="post" asp-controller="Request" asp-action="AddRequest">
+    <div asp-validation-summary="ModelOnly"></div>
+    <div>
+        <label>Номер телефона</label><br />
+        <input asp-for="PhoneNumber" />
+        <span asp-validation-for="PhoneNumber"></span>
+    </div>
+    <div>
+        <label>ФИО</label><br />
+        <input asp-for="FIO" />
+        <span asp-validation-for="FIO"></span>
+    </div>
+    <div>
+        <label>Почта</label><br />
+        <input asp-for="Email" />
+        <span asp-validation-for="Email"></span>
+    </div>
+    <div>
+        <label>Тип запроса</label><br />
+        <input type="radio" asp-for="Type" value="0"/>Продажа
+        <span asp-validation-for="Type"></span>
+    </div>
+    <div>
+        <input type="radio" asp-for="Type" value="1"/>Покупка
+        <span asp-validation-for="Type"></span>
+    </div>
+    <div>
+        <input type="radio" asp-for="Type" value="2"/>Аукцион
+        <span asp-validation-for="Type"></span>
+    </div>
+    <div>
+        <input type="submit" value="Добавить заявку" />
+    </div>
+</form>
+<form method="post" asp-controller="Request" asp-action="RemoveRequest">
+    <div asp-validation-summary="ModelOnly"></div>
+    <div>
+        <label></label><br />
+        <input asp-for="Id" />
+        <span asp-validation-for="Id"></span>
+    </div>
+    <div>
+        <input type="submit" value="Удалить заявку" />
+    </div>
+</form>
+<form method="post" asp-controller="Request" asp-action="CancelRequest">
+    <div asp-validation-summary="ModelOnly"></div>
+    <div>
+        <label></label><br />
+        <input asp-for="Id" />
+        <span asp-validation-for="Id"></span>
+    </div>
+    <div>
+        <input type="submit" value="Отменить заявку" />
+    </div>
+</form>
+<form method="post" asp-controller="Request" asp-action="CloseRequest">
+    <div asp-validation-summary="ModelOnly"></div>
+    <div>
+        <label></label><br />
+        <input asp-for="Id" />
+        <span asp-validation-for="Id"></span>
+    </div>
+    <div>
+        <input type="submit" value="Закрыть заявку" />
+    </div>
+</form>

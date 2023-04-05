@@ -1,0 +1,25 @@
+﻿@model TestTaskDotnet.Models.RequestModels.Request
+<h2>Обработка заявки</h2>
+<form method="get" asp-controller="Request" asp-action="GetAllRequests">
+    <div asp-validation-summary="ModelOnly"></div>
+    <div>
+        <br /><input type="submit" value="Получить все списки заявок" /><br />
+    </div>
+</form>
+<form method="get" asp-controller="Request" asp-action="GetRequest">
+    <div asp-validation-summary="ModelOnly"></div>
+    <div>
+        <label></label><br />
+        <input asp-for="Id" />
+        <span asp-validation-for="Id"></span>
+    </div>
+    <div>
+        <input type="submit" value="Получить заявку" />
+    </div>
+</form>
+<form method="get" asp-controller="Request" asp-action="GetRequestsHistory">
+    <div asp-validation-summary="ModelOnly"></div>
+    <div>
+        <br /><input type="submit" value="Получить историю заявок" />
+    </div>
+</form>
