@@ -18,6 +18,12 @@ namespace TestTaskDotnet.Services
         public async Task<bool> Login(string phoneNumber, string password)
             => (await _db.Users.CountAsync(u => u.PhoneNumber == phoneNumber && u.Password == password)) > 0;
 
+        public async Task<int> FindIdByPhone(string phoneNumber)
+        {
+            var user = await _db.Users.FirstOrDefaultAsync(u => u.PhoneNumber == phoneNumber);
+            return (user.Id);
+        }
+
         public async Task<bool> RegisterNewUser(string phoneNumber, string userName, string password)
         {
             try

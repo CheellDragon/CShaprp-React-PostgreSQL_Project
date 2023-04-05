@@ -24,8 +24,8 @@ namespace TestTaskDotnet.Controllers
             {
                 return BadRequest("Invalid phone number or password");
             }
-
-            return Ok(new { PhoneNumber = phoneNumber });
+            var UserId = await _userService.FindIdByPhone(phoneNumber);
+            return Ok(new { PhoneNumber = phoneNumber, ID = UserId});
         }
 
 
