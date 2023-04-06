@@ -58,9 +58,9 @@ namespace TestTaskDotnet.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddRequest(string phoneNumber, string fio, string email, RequestType type, int UserId)
+        public async Task<IActionResult> AddRequest(string phoneNumber, string fio, string email, RequestType type)
         {
-            var result = await _requestService.AddRequest(phoneNumber, fio, email, type, UserId);
+            var result = await _requestService.AddRequest(phoneNumber, fio, email, type);
             return result ? Ok(result) : BadRequest("Ошибка при создании заявки.");
         }
 

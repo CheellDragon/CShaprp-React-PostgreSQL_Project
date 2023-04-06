@@ -7,7 +7,7 @@ namespace TestTaskDotnet.Interfaces
         IEnumerable<Request> GetAllRequests();
         IEnumerable<Request> GetMyRequests(int userId); 
         Task<Request> GetRequest(int requestID);
-        Task<bool> AddRequest(string phoneNumber, string fio, string email, RequestType type, int UserId);
+        Task<bool> AddRequest(string phoneNumber, string fio, string email, RequestType type);
         Task<bool> AddRequestToUser(int requestID, int id);
         Task<bool> RemoveRequestFromUser(int requestID, string userName);
         Task<bool> RemoveRequest(int requestID);

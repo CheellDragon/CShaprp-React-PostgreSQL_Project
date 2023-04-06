@@ -100,7 +100,7 @@ namespace TestTaskDotnet.Services
             }
         }
 
-        public async Task<bool> AddRequest(string phoneNumber, string fio, string email, RequestType type, int id)
+        public async Task<bool> AddRequest(string phoneNumber, string fio, string email, RequestType type)
         {
             try
             {
@@ -110,8 +110,7 @@ namespace TestTaskDotnet.Services
                     FIO = fio,
                     Email = email,
                     Type = type,
-                    Status = RequestStatus.Created,
-                    UserId = id
+                    Status = RequestStatus.Created
                 };
                 await _db.Requests.AddAsync(newRequest);
                 await _db.SaveChangesAsync();
