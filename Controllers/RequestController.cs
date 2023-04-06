@@ -27,6 +27,10 @@ namespace TestTaskDotnet.Controllers
             => Ok(_requestService.GetAllRequests());
 
         [HttpGet]
+        public IActionResult GetMyRequests(int userId)
+            => Ok(_requestService.GetMyRequests(userId));
+
+        [HttpGet]
         public async Task<IActionResult> GetRequest(int Id)
             => Ok(await _requestService.GetRequest(Id));
 
@@ -39,11 +43,11 @@ namespace TestTaskDotnet.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> AddRequestToUser(int Id, string Name)
+        public async Task<IActionResult> AddRequestToUser(int Id, int UserId)
         {
-            var result = await _requestService.AddRequestToUser(Id, Name);
+            var result = await _requestService.AddRequestToUser(Id, UserId);
 
-            return result ? Ok(result) : BadRequest($"Ошибка при добавлении заявки пользователю {Name}.");
+            return result ? Ok(result) : BadRequest($"Ошибка при добавлении заявки пользователю {UserId}.");
         }
 
         [HttpPost]
@@ -54,9 +58,9 @@ namespace TestTaskDotnet.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddRequest(string phoneNumber, string fio, string email, RequestType type)
+        public async Task<IActionResult> AddRequest(string phoneNumber, string fio, string email, RequestType type, int UserId)
         {
-            var result = await _requestService.AddRequest(phoneNumber, fio, email, type);
+            var result = await _requestService.AddRequest(phoneNumber, fio, email, type, UserId);
             return result ? Ok(result) : BadRequest("Ошибка при создании заявки.");
         }
 

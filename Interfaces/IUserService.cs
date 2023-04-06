@@ -6,6 +6,7 @@ namespace TestTaskDotnet.Interfaces
     {
         Task<bool> Login(string phoneNumber, string password);
         Task<int> FindIdByPhone(string phoneNumber);
+        Task<string> FindNameByPhone(string phoneNumber);
         Task<bool> RegisterNewUser(string phoneNumber, string userName, string password);
         Task<IEnumerable<Request>> GetUserRequests(string userName);
     }

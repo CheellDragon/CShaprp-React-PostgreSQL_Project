@@ -23,5 +23,6 @@ namespace TestTaskDotnet.Models.RequestModels
         public string? Email { get; set; }
         public RequestType Type { get; set; }
         public RequestStatus Status { get; set; }
+        public int? UserId { get; set; }
     }
 }

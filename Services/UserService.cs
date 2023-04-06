@@ -23,6 +23,11 @@ namespace TestTaskDotnet.Services
             var user = await _db.Users.FirstOrDefaultAsync(u => u.PhoneNumber == phoneNumber);
             return (user.Id);
         }
+        public async Task<string> FindNameByPhone(string phoneNumber)
+        {
+            var user = await _db.Users.FirstOrDefaultAsync(u => u.PhoneNumber == phoneNumber);
+            return (user.Name);
+        }
 
         public async Task<bool> RegisterNewUser(string phoneNumber, string userName, string password)
         {

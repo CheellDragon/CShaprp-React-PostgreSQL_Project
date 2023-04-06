@@ -49,6 +49,9 @@ namespace TestTaskDotnet.Services
 
         public IEnumerable<Request> GetAllRequests()
             => new List<Request>(_db.Requests);
+        public IEnumerable<Request> GetMyRequests(int userId)
+         => new List<Request>(_db.Requests.Where(r => r.UserId == userId));
+
 
         public IEnumerable<RequestHistory> GetRequestsHistory()
             => new List<RequestHistory>(_db.RequestsHistory);
@@ -57,12 +60,12 @@ namespace TestTaskDotnet.Services
             => await _db.Requests.FirstOrDefaultAsync(r => r.Id == requestID);
 
 
-        public async Task<bool> AddRequestToUser(int requestID, string userName)
+        public async Task<bool> AddRequestToUser(int requestID, int id)
         {
             try
             {
                 var request = await _getRequestByID(requestID);
-                var user = await _db.Users.FirstOrDefaultAsync(u => u.Name == userName);
+                var user = await _db.Users.FirstOrDefaultAsync(u => u.Id == id);
                 user.Requests = new List<Request>();
                 user.Requests.Add(request);
 
@@ -97,7 +100,7 @@ namespace TestTaskDotnet.Services
             }
         }
 
-        public async Task<bool> AddRequest(string phoneNumber, string fio, string email, RequestType type)
+        public async Task<bool> AddRequest(string phoneNumber, string fio, string email, RequestType type, int id)
         {
             try
             {
@@ -107,7 +110,8 @@ namespace TestTaskDotnet.Services
                     FIO = fio,
                     Email = email,
                     Type = type,
-                    Status = RequestStatus.Created
+                    Status = RequestStatus.Created,
+                    UserId = id
                 };
                 await _db.Requests.AddAsync(newRequest);
                 await _db.SaveChangesAsync();
