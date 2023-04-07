@@ -51,10 +51,10 @@ namespace TestTaskDotnet.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> RemoveRequestFromUser(int Id, string Name)
+        public async Task<IActionResult> RemoveRequestFromUser(int Id, int UserId)
         {
-            var result = await _requestService.RemoveRequestFromUser(Id, Name);
-            return result ? Ok(result) : BadRequest($"Ошибка при удалении заявки у пользователя {Name}.");
+            var result = await _requestService.RemoveRequestFromUser(Id, UserId);
+            return result ? Ok(result) : BadRequest($"Ошибка при удалении заявки у пользователя {UserId}.");
         }
 
         [HttpPost]

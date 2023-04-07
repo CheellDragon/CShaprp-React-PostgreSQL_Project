@@ -58,8 +58,6 @@ namespace TestTaskDotnet.Services
 
         public async Task<Request> GetRequest(int requestID)
             => await _db.Requests.FirstOrDefaultAsync(r => r.Id == requestID);
-
-
         public async Task<bool> AddRequestToUser(int requestID, int id)
         {
             try
@@ -80,13 +78,13 @@ namespace TestTaskDotnet.Services
             }
         }
 
-        public async Task<bool> RemoveRequestFromUser(int requestID, string userName)
+        public async Task<bool> RemoveRequestFromUser(int requestID, int UserId)
         {
             try
             {
                 var request = await _getRequestByID(requestID);
-                var user = await _db.Users.FirstOrDefaultAsync(u => u.Name == userName);
-                user.Requests = await _db.Requests.Where(u => u.Id == request.Id).ToListAsync();
+                var user = await _db.Users.FirstOrDefaultAsync(u => u.Id == UserId);
+                user.Requests = await _db.Requests.Where(r => r.Id == request.Id).ToListAsync();
                 user.Requests.Remove(request);
 
                 _db.Users.Update(user);
