@@ -15,23 +15,17 @@ var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 builder.Services.AddCors(options =>
 {
     options.AddPolicy(name: MyAllowSpecificOrigins,
-                      policy =>
+                      builder =>
                       {
-                          policy.WithOrigins("http://localhost:3001",
-                                              "http://localhost:3001/register",
-                                              "http://localhost:3001/create",
-                                              "http://localhost:3001/requests",
-                                              "http://localhost:3001/history",
-                                              "http://localhost:3000",
-                                              "http://localhost:3000/register",
-                                              "http://localhost:3000/create",
-                                              "http://localhost:3000/requests",
-                                              "http://localhost:3000/history")
-                            .WithMethods("GET,POST,PUT,DELETE")
-                            .AllowAnyHeader();
-
+                          builder
+                            .WithOrigins("http://localhost:3001", "http://localhost:3000")
+                            .WithMethods("GET", "POST", "PUT", "DELETE")
+                            .AllowAnyHeader()
+                            .AllowCredentials();
                       });
 });
+
+
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
