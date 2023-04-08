@@ -9,5 +9,6 @@ namespace TestTaskDotnet.Interfaces
         Task<string> FindNameByPhone(string phoneNumber);
         Task<bool> RegisterNewUser(string phoneNumber, string userName, string password);
         Task<IEnumerable<Request>> GetUserRequests(string userName);
+        string CreateToken(string UserName, IConfiguration _configuration);
     }
 }

@@ -7,11 +7,13 @@ namespace TestTaskDotnet.Controllers
     {
         private readonly ILogger<UserController> _logger;
         private readonly IUserService _userService;
+        private readonly IConfiguration _configuration;
 
-        public UserController(ILogger<UserController> logger, IUserService userService)
+        public UserController(ILogger<UserController> logger, IUserService userService, IConfiguration configuration)
         {
             _logger = logger;
             _userService = userService;
+            _configuration = configuration;
         }
 
         //GET
@@ -26,7 +28,8 @@ namespace TestTaskDotnet.Controllers
             }
             var UserId = await _userService.FindIdByPhone(phoneNumber);
             var UserName = await _userService.FindNameByPhone(phoneNumber);
-            return Ok(new { PhoneNumber = phoneNumber, ID = UserId, fio = UserName });
+            var Token = _userService.CreateToken(UserName, _configuration);
+            return Ok(new { PhoneNumber = phoneNumber, ID = UserId, fio = UserName, token = Token });
         }
 
 
